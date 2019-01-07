@@ -34,19 +34,15 @@ let StudentListItem = document.getElementsByTagName('li'); // Grabs all the li I
 console.log(StudentListItem.length);
 let ChildListItem = StudentListItem.children; //Takes the children of the li Item and stores them into ChildListItem. Aka the ul Item
 //Makes the child item so you manipulate the elements in the DOM
-const buttonDiv = document.querySelector('.pagination');
-const buttonUl = buttonDiv.querySelector('li');
 let NumberofItem = StudentListItem.length;
 
 //Step 3 & 4: Determine the number of elements that goes on one page. And create the variable for the number of pages needed
 const ItemPerPage = 10;
 
 //Step 5: Create a function that determines the number of pages PagesNeeded
-function PagesNeeded() {
-  //Math ceil so the answer returned is rounded up
+
   let TotalPages = Math.ceil(StudentListItem.length/ItemPerPage);
-  return TotalPages;
-}
+
 
 //Step 6: Create for- loop that deltes the display for all the items
 for (var i = 0; i < StudentListItem.length; i++) {
@@ -67,26 +63,37 @@ function showPage (page, ChildListItem) {
 showPage(1,ChildListItem);
 
 // Loop to create page buttons based on number of required pages
-for (let i = 1; i <= PagesNeeded(); i++) {
-    let pageli = document.createElement('li');
-    let pageLink = document.createElement('a');
-    pageLink.className = 'active';
-    pageLink.href = '#';
-    pageLink.textContent = i;
-    buttonUl.appendChild(pageli);
-    pageli.appendChild(pageLink);
-}
+const buttonDiv = document.createElement('div'); // creates a div for buttons
+const mainPage = document.querySelector('.page'); // creating a selector for page div
+console.log(mainPage);
+mainPage.appendChild(buttonDiv); // appends buttonsdiv to the page
+buttonDiv.className = 'pagination'; // gives buttodiv the class name pagination
+console.log(buttonDiv); // logs button div to  console
+const buttonUl = document.createElement('ul'); // creating unordered list
+buttonDiv.appendChild(buttonUl); //append list to buttondiv
 
-buttonDiv.addEventListener('click', (event) => {
-    noResultDiv.innerHTML = '';
-    let buttonNumber = parseInt(event.target.textContent);
-    let max = buttonNumber * 10;
-    let min = max - 10;
-    for (let i = 0; i < eachStudent.length; i++) {
-        if (i >= min && i < max) {
-            eachStudent[i].style.display = '';
-        }  else {
-            eachStudent[i].style.display = 'none';
-        }
-    }
-});
+
+for (let i = 1; i < TotalPages; i++) {
+  pageli = document.createElement('li');
+  const pageLink = document.createElement('a');
+  pageLink.className = 'active';
+  pageLink.href = '#';
+  pageLink.textContent = i + 1;
+  pageli.appendChild(pageLink);
+
+  buttonDiv.addEventListener('click', (event) => {
+      let buttonNumber = parseInt(event.target.textContent);
+      let max = buttonNumber * 10;
+      let min = max - 10;
+      for (let i = 0; i < StudentListItem.length; i++) {
+          if (i >= min && i < max) {
+              StudentListItem[i].style.display = '';
+          }  else {
+              StudentListItem[i].style.display = 'none';
+          }
+      }
+  });//evernt listyener
+}
+buttonUl.appendChild(pageli);
+console.log(buttonUl);
+console.log(TotalPages);
