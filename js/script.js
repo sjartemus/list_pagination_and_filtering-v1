@@ -67,6 +67,8 @@ for (let i = 1; i < TotalPages; i++) {
   pageLink.href = '#';
   pageLink.textContent = i + 1;
   pageli.appendChild(pageLink);
+  buttonUl.appendChild(pageli);
+
 
   buttonDiv.addEventListener('click', (event) => {
       let buttonNumber = parseInt(event.target.textContent);
@@ -81,6 +83,5 @@ for (let i = 1; i < TotalPages; i++) {
       }
   });//evernt listyener
 }
-buttonUl.appendChild(pageli);
 console.log(buttonUl);
 console.log(TotalPages);
