@@ -60,14 +60,21 @@ const buttonUl = document.createElement('ul'); // creating unordered list
 buttonDiv.appendChild(buttonUl); //append list to buttondiv
 
 
-for (let i = 0; i < TotalPages; i++) {
+for (let i = 0; i < TotalPages; i+= 1) { // for-loop creates li and a element.
   pageli = document.createElement('li');
-  const pageLink = document.createElement('a');
-  pageLink.className = 'active';
-  pageLink.href = '#';
-  pageLink.textContent = i + 1;
-  pageli.appendChild(pageLink);
-  buttonUl.appendChild(pageli);
+  const pageLink = document.createElement('a'); // a makes the buttons hyperlinks
+  pageLink.className = 'active'; // activates the a link created by a variable
+  pageLink.href = '#'; //puts numbers as the hyperlink text
+  pageLink.textContent = i + 1; //textcontent i + 1
+  pageli.appendChild(pageLink); //appends the pagelinks
+  buttonUl.appendChild(pageli); // appends the buttonul to the li
+}
+  //The page = a notebook
+  //The ul = pages in a notebook
+  //The li = writing on the page in the notebook
+  // -------------------PAGE------------------
+  //            ---------UL----------
+  //                  ---LI--------
 
 
   buttonDiv.addEventListener('click', (event) => {
@@ -81,7 +88,7 @@ for (let i = 0; i < TotalPages; i++) {
               StudentListItem[i].style.display = 'none';
           }
       }
-  });//evernt listyener
-}
+  });//evernt listener
+
 console.log(buttonUl);
 console.log(TotalPages);
