@@ -28,7 +28,7 @@ const ItemPerPage = 10;
 
 //Step 5: Create a function that determines the number of pages PagesNeeded
 
-  let TotalPages = Math.ceil(StudentListItem.length/ItemPerPage);
+  const TotalPages = Math.ceil(StudentListItem.length/ItemPerPage);
 
 
 //Step 6: Create for- loop that deltes the display for all the items
@@ -60,7 +60,7 @@ const buttonUl = document.createElement('ul'); // creating unordered list
 buttonDiv.appendChild(buttonUl); //append list to buttondiv
 
 
-for (let i = 1; i < TotalPages; i++) {
+for (let i = 0; i < TotalPages; i++) {
   pageli = document.createElement('li');
   const pageLink = document.createElement('a');
   pageLink.className = 'active';
